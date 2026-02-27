@@ -50,6 +50,7 @@
     "lint": "eslint src/",
     "fetch-schema": "tsx scripts/fetch-schema.ts",
     "changeset": "changeset",
+    "release": "npm run build && npm publish --provenance --access public",
     "prepublishOnly": "npm run typecheck && npm run test && npm run build"
   },
   "keywords": [

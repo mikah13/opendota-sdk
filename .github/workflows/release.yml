@@ -24,7 +24,7 @@ jobs:
       - run: npm test
       - uses: changesets/action@v1
         with:
-          publish: npm run build && npm publish --provenance --access public
+          publish: npm run release
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
