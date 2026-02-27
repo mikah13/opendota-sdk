@@ -45,6 +45,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
     "fetch-schema": "tsx scripts/fetch-schema.ts",
+    "changeset": "changeset",
     "prepublishOnly": "npm run typecheck && npm run test && npm run build"
   },
   "keywords": [
@@ -66,6 +67,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.12",
     "@types/node": "^25.3.2",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^10.0.2",
