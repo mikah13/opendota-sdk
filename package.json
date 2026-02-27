@@ -1,6 +1,6 @@
 {
   "name": "opendota-sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Type-safe TypeScript SDK for the OpenDota API",
   "author": {
     "name": "Mike Hoang",
