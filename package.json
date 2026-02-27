@@ -36,6 +36,10 @@
   "engines": {
     "node": ">=18"
   },
+  "overrides": {
+    "js-yaml": "^4.1.1",
+    "minimatch": "^10.2.1"
+  },
   "scripts": {
     "generate": "openapi-typescript schemas/opendota-v2.json -o src/generated/schema.ts",
     "build": "tsup",
