@@ -1,0 +1,8 @@
+# Not needed if using "files" in package.json, but belt-and-suspenders
+tests/
+scripts/
+schemas/
+.github/
+vitest.config.ts
+tsup.config.ts
+SCHEMA_NOTES.md

@@ -1,0 +1,36 @@
+name: Schema Update Check
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"  # Every Monday at 9am UTC
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run fetch-schema
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet schemas/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Create PR
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: "chore: update OpenDota API schema"
+          body: |
+            The upstream OpenDota API schema has changed.
+            Review the diff to schemas/opendota-v2.json and update types/overrides as needed.
+          branch: schema-update
+          commit-message: "chore: update OpenDota API schema"

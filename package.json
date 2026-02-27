@@ -1,0 +1,79 @@
+{
+  "name": "opendota-sdk",
+  "version": "0.1.0",
+  "description": "Type-safe TypeScript SDK for the OpenDota API",
+  "author": {
+    "name": "Mike Hoang",
+    "url": "https://github.com/mikah13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikah13/opendota-sdk.git"
+  },
+  "homepage": "https://github.com/mikah13/opendota-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/mikah13/opendota-sdk/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "generate": "openapi-typescript schemas/opendota-v2.json -o src/generated/schema.ts",
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:live": "OPENDOTA_LIVE_TEST=1 vitest run --testPathPattern=live",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "fetch-schema": "tsx scripts/fetch-schema.ts",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+  },
+  "keywords": [
+    "opendota",
+    "dota2",
+    "dota",
+    "api",
+    "sdk",
+    "typescript",
+    "rest",
+    "client",
+    "wrapper",
+    "esm",
+    "cjs"
+  ],
+  "license": "MIT",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.2",
+    "eslint": "^10.0.2",
+    "msw": "^2.12.10",
+    "openapi-typescript": "^7.13.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vitest": "^4.0.18"
+  }
+}
